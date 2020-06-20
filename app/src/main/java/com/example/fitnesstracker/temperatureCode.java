@@ -11,13 +11,15 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class temperatureCode extends AppCompatActivity implements SensorEventListener {
+public class temperatureCode extends AppCompatActivity {
 
     private static final String TAG = "temperatureCode";
 
     private SensorManager sensorManager;
 
     private Sensor mTemp;
+
+    SensorEventListener  sensorEventListener;
 
     TextView temp;
 
@@ -33,25 +35,37 @@ public class temperatureCode extends AppCompatActivity implements SensorEventLis
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         mTemp = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
-        if (mTemp != null) {
-            sensorManager.registerListener(temperatureCode.this, mTemp, SensorManager.SENSOR_DELAY_NORMAL);
-            Log.d(TAG, "onCreate: Registered Temp Listener");
-        } else {
-            temp.setText("Temp Not Supported");
-        }
+
+        sensorEventListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                float tempS = event.values[0];
+                String tempnumber = "Temperature: ";
+                tempnumber += String.valueOf(tempS);
+                temp.setText(tempnumber);
+
+
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        };
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sensorManager.registerListener(sensorEventListener, mTemp, sensorManager.SENSOR_DELAY_FASTEST);
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
-
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(sensorEventListener);
     }
 
-    @Override
-    public void onSensorChanged(SensorEvent sensorEvent) {
-        Sensor sensor = sensorEvent.sensor;
-        if (sensor.getType() == sensor.TYPE_AMBIENT_TEMPERATURE) {
 
-
-        }
-    }
 }

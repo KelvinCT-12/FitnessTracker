@@ -3,6 +3,7 @@ package com.example.fitnesstracker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -67,5 +68,15 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                Toast.makeText(RegisterActivity.this, "cancelled", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 }

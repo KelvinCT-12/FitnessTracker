@@ -80,11 +80,13 @@
 
                 <ImageButton
                     android:id="@+id/ImageButton"
+                    android:text="@string/ImageButton"
                     android:layout_width="match_parent"
                     android:layout_height="122dp"
                     android:src="@drawable/step"
                     tools:layout_editor_absoluteX="51dp"
-                    tools:layout_editor_absoluteY="367dp" />
+                    tools:layout_editor_absoluteY="367dp"/>
+
 
                 <TextView
                     android:layout_width="wrap_content"

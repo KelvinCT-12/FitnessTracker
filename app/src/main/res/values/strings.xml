@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FitnessTracker</string>
+
+    <string name="login">login</string>
+
+    <string name="ImageButton">ImageButton</string>
 </resources>

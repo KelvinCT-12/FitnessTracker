@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#c10e88"
+        android:background="#000000"
         android:gravity="center"
         android:padding="10dp"
         android:text="Login Form"
@@ -45,7 +45,8 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Login" />
+            android:text="login"
+           android:onClick="playSound"/>
 
         <Button
             android:id="@+id/register"
